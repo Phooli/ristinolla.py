@@ -22,7 +22,7 @@ class Ristinolla:
         # Jos pelaajamäärää ei asetettu, kysytään ihmispelaajien määrää. 1 = Pelaaja 2 on tietokonepelaaja. 2 = Pelaaja 2 on toinen ihmispelaaja.
         while self.pelilauta.annapelaajaMaara() != 1 and self.pelilauta.annapelaajaMaara() != 2: 
             try: 
-                self.pelilauta.asetaPelaajaMaara(int(input("Syötä ihmispelaajien määrä (2/2) ")))
+                self.pelilauta.asetaPelaajaMaara(int(input("Syötä ihmispelaajien määrä (1/2) ")))
                 if self.pelilauta.annapelaajaMaara() < 1 or self.pelilauta.annapelaajaMaara() > 2: 
                     print("Syötetty pelaajamäärä ei kelpaa.\n")
                     continue
