@@ -1,6 +1,6 @@
 class Pelilauta:
-    def __init__(self):
-        self.lauta = [['1','2','3'],['4','5','6'],['7','8','9']]
+    def __init__(self, a, b, c, d, e, f, g, h, i):
+        self.lauta = [[a,b,c],[d,e,f],[g,h,i]]
         self.kierros = 1
         self.pelaajaMaara = 0
         self.pelitilanne = ""
@@ -17,34 +17,11 @@ class Pelilauta:
 
     # Palauttaa tämänhetkisen pelitilanteen merkkijonona.
     def paivitaPelitilanne(self): 
-        self.pelitilanne = ""
-        self.pelitilanne.join(self.lauta[0][0])
-        self.pelitilanne.join(',')
-        self.pelitilanne.join(self.lauta[0][1])
-        self.pelitilanne.join(',')
-        self.pelitilanne.join(self.lauta[0][2])
-        self.pelitilanne.join(',')
-        self.pelitilanne.join(self.lauta[1][0])
-        self.pelitilanne.join(',')
-        self.pelitilanne.join(self.lauta[1][1])
-        self.pelitilanne.join(',')
-        self.pelitilanne.join(self.lauta[1][2])
-        self.pelitilanne.join(',')
-        self.pelitilanne.join(self.lauta[2][0])
-        self.pelitilanne.join(',')
-        self.pelitilanne.join(self.lauta[2][1])
-        self.pelitilanne.join(',')
-        self.pelitilanne.join(self.lauta[2][2])
-        self.pelitilanne.join(',')
-        self.pelitilanne.join(str(self.pelaajaMaara))
-        self.pelitilanne.join(',')
-        self.pelitilanne.join(str(self.kierros))
-        return 
+        self.pelitilanne = "".join(f"{self.lauta[0][0]},{self.lauta[0][1]},{self.lauta[0][2]},{self.lauta[1][0]},{self.lauta[1][1]},{self.lauta[1][2]},{self.lauta[2][0]},{self.lauta[2][1]},{self.lauta[2][2]},{str(self.pelaajaMaara)},{str(self.kierros)}")
 
     # Palauttaa pelitilanteen lähtöasetelmiin, jossa ei asetettua pelaajamäärää ja kierros 1. 
     def nollaaPelitilanne(self):
-        self.pelitilanne = ""
-        self.pelitilanne.join("1,2,3,4,5,6,7,8,9,0,1")
+        self.pelitilanne = "".join("1,2,3,4,5,6,7,8,9,0,1")
         self.asetaPelaajaMaara(0)
         self.asetaKierros(1)
         self.lauta[0][0] = '1' 
