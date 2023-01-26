@@ -1,10 +1,10 @@
 class Pelilauta:
     def __init__(self, a, b, c, d, e, f, g, h, i):
         self.lauta = [[a,b,c],[d,e,f],[g,h,i]]
-        self.kierros = 1
-        self.pelaajaMaara = 0
-        self.pelitilanne = ""
-        self.pelatutRuudut = []
+        self.kierros = int()
+        self.pelaajaMaara = int()
+        self.pelitilanne = str()
+        self.pelatutRuudut = list()
 
     def annapelaajaMaara(self): 
         return self.pelaajaMaara

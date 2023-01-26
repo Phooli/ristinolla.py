@@ -2,7 +2,7 @@ import Pelilauta
 import Pelaaja
 
 class Ristinolla:
-    def __init__(self, Pelaaja2 = None):
+    def __init__(self, Pelaaja2 = Pelaaja):
         self.pelilauta = Pelilauta.Pelilauta('1','2','3','4','5','6','7','8','9',)
         self.Pelaaja1 = Pelaaja.ihmisPelaaja()
         self.Pelaaja2 = Pelaaja2
