@@ -1,56 +1,57 @@
 import random
+import time
 
-class Pelaaja: 
+class pelaaja: 
        def __init__(self):
             pass
-       def Pelaa(self):
+       def pelaa(self):
             pass 
         
-class ihmisPelaaja(Pelaaja):
+class ihmispelaaja(pelaaja):
 
     # Tulostetaan pelilauta.
     # Tarkistetaan ihmispelaajien määrä, kysytään meneillään olevan vuoron perusteella oikealta pelaajalta ruudun numeroa. 
     # Varmistetaan, että numero vastaa ruutua, että ruutu ei ole täytetty, ja että ylipäätään syötetään numero. 
     # Asetetaan pelaajan merkki ja päivitetään pelitilanne.
-    def Pelaa(self, Pelilauta):
-        syoteSallittu = False
-        Pelilauta.tulostaLauta()
-        while syoteSallittu == False:
+    def pelaa(self, pelilauta):
+        syote_sallittu = False
+        pelilauta.tulosta_lauta()
+        while syote_sallittu == False:
             try:
-                if Pelilauta.annapelaajaMaara() == 2:
-                    if Pelilauta.annaKierros() %2 != 0: 
-                        seuraavaRuutu = int(input("Pelaaja 1 (X): Aseta merkkisi vapaaseen ruutuun syöttämällä ruudun numero: "))   
+                if pelilauta.anna_pelaajamaara() == 2:
+                    if pelilauta.anna_kierros() %2 != 0: 
+                        seuraava_ruutu = int(input("Pelaaja 1 (X): Aseta merkkisi vapaaseen ruutuun syöttämällä ruudun numero: "))   
                     else:
-                        seuraavaRuutu= int(input("Pelaaja 2 (O): Aseta merkkisi vapaaseen ruutuun syöttämällä ruudun numero: "))
+                        seuraava_ruutu= int(input("Pelaaja 2 (O): Aseta merkkisi vapaaseen ruutuun syöttämällä ruudun numero: "))
                 else:
-                    seuraavaRuutu = int(input("Aseta merkkisi vapaaseen ruutuun syöttämällä ruudun numero: "))
-                if seuraavaRuutu > 9 or seuraavaRuutu < 1:
+                    seuraava_ruutu = int(input("Aseta merkkisi vapaaseen ruutuun syöttämällä ruudun numero: "))
+                if seuraava_ruutu > 9 or seuraava_ruutu < 1:
                     print("Numero ei vastaa ruutua.\n")
                     continue
-                if seuraavaRuutu in Pelilauta.annaPelatutRuudut():
+                if seuraava_ruutu in pelilauta.anna_pelatut_ruudut():
                     print("Ruutu on jo täytetty.\n")
                     continue
-                syoteSallittu = True
-                Pelilauta.asetaMerkki(seuraavaRuutu)
-                Pelilauta.paivitaPelitilanne()
+                syote_sallittu = True
+                pelilauta.aseta_merkki(seuraava_ruutu)
+                pelilauta.paivita_pelitilanne()
             except ValueError: 
                 print("Syötteesi ei ole sopiva numero.\n")
 
-class tietokonePelaaja(Pelaaja):
+class tietokonepelaaja(pelaaja):
     
     # Tulostetaan pelilauta.
     # Generoidaan satunnaisluku 1-9, kunnes luku vastaa vapaan ruudun numeroa. 
     # Asetetaan merkki vapaaseen ruutuun.
     # Päivitetään pelitilanne.
-    def Pelaa(self, Pelilauta):
-        Pelilauta.tulostaLauta()
+    def pelaa(self, pelilauta):
+        pelilauta.tulosta_lauta()
         print("Tietokonepelaaja asettaa merkin...")
-        #try:
-        #   Thread.sleep(3000);
-        #except Exception as e:
-        #    Thread.currentThread().interrupt()
-        seuraavaRuutu = random.randint(1, 9)
-        while seuraavaRuutu in Pelilauta.annaPelatutRuudut():
-            seuraavaRuutu = random.randint(1, 9)
-        Pelilauta.asetaMerkki(seuraavaRuutu)
-        Pelilauta.paivitaPelitilanne()
+        try: 
+            time.sleep(3)
+        except Exception:
+            print("Jokin meni pieleen!")
+        seuraava_ruutu = random.randint(1, 9)
+        while seuraava_ruutu in pelilauta.anna_pelatut_ruudut():
+            seuraava_ruutu = random.randint(1, 9)
+        pelilauta.aseta_merkki(seuraava_ruutu)
+        pelilauta.paivita_pelitilanne()

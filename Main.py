@@ -1,9 +1,9 @@
 import Ristinolla
 
 class Main:
-        Ristinolla = Ristinolla.Ristinolla()
+        ristinolla = Ristinolla.ristinolla()
         try:
-            Ristinolla.lataa()
+            ristinolla.lataa()
         except Exception: 
            print("Jokin meni pieleen!") 
-        Ristinolla.pelaa()
+        ristinolla.pelaa()

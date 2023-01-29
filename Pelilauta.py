@@ -1,29 +1,29 @@
-class Pelilauta:
+class pelilauta:
     def __init__(self, a, b, c, d, e, f, g, h, i):
         self.lauta = [[a,b,c],[d,e,f],[g,h,i]]
         self.kierros = int()
-        self.pelaajaMaara = int()
+        self.pelaajamaara = int()
         self.pelitilanne = str()
-        self.pelatutRuudut = list()
+        self.pelatut_ruudut = list()
 
-    def annapelaajaMaara(self): 
-        return self.pelaajaMaara
+    def anna_pelaajamaara(self): 
+        return self.pelaajamaara
 
-    def asetaPelaajaMaara(self, pelaajaMaara): 
-        self.pelaajaMaara = pelaajaMaara
+    def aseta_pelaajamaara(self, pelaajaMaara): 
+        self.pelaajamaara = pelaajaMaara
     
-    def annaPelitilanne(self): 
+    def anna_pelitilanne(self): 
         return self.pelitilanne
 
     # Palauttaa tämänhetkisen pelitilanteen merkkijonona.
-    def paivitaPelitilanne(self): 
-        self.pelitilanne = "".join(f"{self.lauta[0][0]},{self.lauta[0][1]},{self.lauta[0][2]},{self.lauta[1][0]},{self.lauta[1][1]},{self.lauta[1][2]},{self.lauta[2][0]},{self.lauta[2][1]},{self.lauta[2][2]},{str(self.pelaajaMaara)},{str(self.kierros)}")
+    def paivita_pelitilanne(self): 
+        self.pelitilanne = "".join(f"{self.lauta[0][0]},{self.lauta[0][1]},{self.lauta[0][2]},{self.lauta[1][0]},{self.lauta[1][1]},{self.lauta[1][2]},{self.lauta[2][0]},{self.lauta[2][1]},{self.lauta[2][2]},{str(self.pelaajamaara)},{str(self.kierros)}")
 
     # Palauttaa pelitilanteen lähtöasetelmiin, jossa ei asetettua pelaajamäärää ja kierros 1. 
-    def nollaaPelitilanne(self):
+    def nollaa_pelitilanne(self):
         self.pelitilanne = "".join("1,2,3,4,5,6,7,8,9,0,1")
-        self.asetaPelaajaMaara(0)
-        self.asetaKierros(1)
+        self.aseta_pelaajamaara(0)
+        self.aseta_kierros(1)
         self.lauta[0][0] = '1' 
         self.lauta[0][1] = '2'
         self.lauta[0][2] = '3'
@@ -33,40 +33,40 @@ class Pelilauta:
         self.lauta[2][0] = '7'
         self.lauta[2][1] = '8'
         self.lauta[2][2] = '9'
-        self.pelatutRuudut.clear()
+        self.pelatut_ruudut.clear()
     
-    def annaKierros(self):
+    def anna_kierros(self):
         return self.kierros
     
-    def asetaKierros(self, kierros):
+    def aseta_kierros(self, kierros):
         self.kierros = kierros
 
     # Tarkistaa jokaisen ruudun asetetun merkin varalta, ja lisää tällöin ruudun pelattujen ruutujen taulukkoon.
-    def selvitaPelatutRuudut(self):
+    def selvita_pelatut_ruudut(self):
         if self.lauta[0][0] != '1': 
-            self.pelatutRuudut.append(1)
+            self.pelatut_ruudut.append(1)
         if self.lauta[0][1] != '2':
-            self.pelatutRuudut.append(2)
+            self.pelatut_ruudut.append(2)
         if self.lauta[0][2] != '3':
-            self.pelatutRuudut.append(3)
+            self.pelatut_ruudut.append(3)
         if self.lauta[1][0] != '4':
-            self.pelatutRuudut.append(4)
+            self.pelatut_ruudut.append(4)
         if self.lauta[1][1] != '5':
-            self.pelatutRuudut.append(5)
+            self.pelatut_ruudut.append(5)
         if self.lauta[1][2] != '6':
-            self.pelatutRuudut.append(6)
+            self.pelatut_ruudut.append(6)
         if self.lauta[2][0] != '7':
-            self.pelatutRuudut.append(7)
+            self.pelatut_ruudut.append(7)
         if self.lauta[2][1] != '8':
-            self.pelatutRuudut.append(8)
+            self.pelatut_ruudut.append(8)
         if self.lauta[2][2] != '9':
-            self.pelatutRuudut.append(9)
+            self.pelatut_ruudut.append(9)
     
-    def annaPelatutRuudut(self):
-        return self.pelatutRuudut
+    def anna_pelatut_ruudut(self):
+        return self.pelatut_ruudut
 
     # Tulostaa yksinkertaisen ristinolla-laudan komentoriville senhetkisen pelitilanteen mukaisesti. 
-    def tulostaLauta(self):
+    def tulosta_lauta(self):
         print("")
         print(self.lauta[0][0] + "|" + self.lauta[0][1] + "|" + self.lauta[0][2])
         print("-" + "+" + "-" + "+" + "-")
@@ -78,7 +78,7 @@ class Pelilauta:
     # Asetetaan oikea merkki kierroksen perusteella (pariton = X, parillinen = O) pelaajan antamaa lukua vastaavaan ruutuun.
     # Lisätään pelattu ruutu pelattujen ruutujen taulukkoon.
     # Kasvatetaan kierroksen lukua yhdellä.
-    def asetaMerkki(self, numero): 
+    def aseta_merkki(self, numero): 
         if (self.kierros %2 == 1):
             merkki = 'X'
         else:
@@ -101,13 +101,13 @@ class Pelilauta:
             self.lauta[2][1] = merkki
         if (numero == 9): 
             self.lauta[2][2] = merkki
-        self.pelatutRuudut.append(numero)
+        self.pelatut_ruudut.append(numero)
         self.kierros = self.kierros + 1
 
     # Tulostetaan pelin lopputulos. Voiton tapauksessa voittaja selviää pelaajien määrän ja kierroksen avulla. Jos voittoa ei ole, julistetaan tasapeli.
-    def julistaLopputulos(self):
-        if self.onkoVoitto() == True: 
-            if self.pelaajaMaara == 2: 
+    def julista_lopputulos(self):
+        if self.onko_voitto() == True: 
+            if self.pelaajamaara == 2: 
                 if self.kierros %2 == 0:
                     print("Pelaaja 1 (X) voittaa!")
                 else:
@@ -121,13 +121,13 @@ class Pelilauta:
             print("Tasapeli!")
 
     # Palauttaa booleanin siitä, onko peli loppu. Voiton puuttuessa ja ruudukossa ollessa tilaa peli ei ole loppu.
-    def peliLoppu(self):
-        if self.onkoVoitto() == False and self.onkoTaynna() == False: 
+    def peli_loppu(self):
+        if self.onko_voitto() == False and self.onko_taynna() == False: 
             return False
         return True
 
     # Palautetaan boolean voitosta brute force -selvityksen perusteella siitä, että onko pelilaudalla sääntöjen mukaisesti kolmen merkin yhdistelmä.
-    def onkoVoitto(self):
+    def onko_voitto(self):
         if self.lauta[0][0] == self.lauta[0][1] and self.lauta[0][0] == self.lauta[0][2]: 
             return True
         if self.lauta[1][0] == self.lauta[1][1] and self.lauta[1][0] == self.lauta[1][2]: 
@@ -147,7 +147,7 @@ class Pelilauta:
         return False
 
     # Palautetaan boolean siitä, onko laudalla tilaa. Tarkistetaan ruutuja, kunnes jossain ruudussa ei ole merkkiä. Jos kaikissa ruuduissa merkki, lauta on täynnä.
-    def onkoTaynna(self): 
+    def onko_taynna(self): 
         if self.lauta[0][0] != 'O' and self.lauta[0][0] != 'X': 
             return False
         if self.lauta[0][1] != 'O' and self.lauta[0][1] != 'X': 
