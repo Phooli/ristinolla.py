@@ -61,14 +61,14 @@ class ristinolla:
 
     # Kirjoitetaan pelitilanne-merkkijono tallennus.txt-tiedostoon.
     def tallenna(self):
-        tallennus = open("ristinolla2/tallennus.txt", "w")
+        tallennus = open("tallennus.txt", "w")
         tallennus.write(self.pelilauta.anna_pelitilanne())
         tallennus.close()
 
     # Ladataan peli, eli luetaan tallennus.txt-tiedosto ja luodaan sen perusteella pelilauta, asetetaan pelaajamäärä, pelaajamäärän perusteella luodaan pelaajat,
     # asetetaan meneillään oleva kierros oikeaksi, ja selvitetään pelatut ruudut taulukkoon, jotta saadaan pelaajilta sopivat syötteet.
     def lataa(self): 
-        tallennus = open("ristinolla2/tallennus.txt", "r")
+        tallennus = open("tallennus.txt", "r")
         tallenne = tallennus.read()
         tallennus.close()
         self.pelilauta = Pelilauta.pelilauta(tallenne[0], tallenne[2], tallenne[4], tallenne[6], tallenne[8], tallenne[10], tallenne[12], tallenne[14], tallenne[16]) 
