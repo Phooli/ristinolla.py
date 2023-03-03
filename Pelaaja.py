@@ -41,7 +41,7 @@ class tietokonepelaaja(pelaaja):
     
     # 1. Tulostetaan pelilauta.
     # 2. Jos löytyy yksi ruutu, jolla voitetaan tai voidaan estää vastustajan voitto, pelataan se.
-    # Muussa tapauksessa pelataan keskimmäinen ruutu, jos mahdollista, tai satunnaisesti generoitua vapaata ruutua.
+    # Muussa tapauksessa pelataan prioriteetein: 1. keskimmäinen ruutu 2. satunnainen kulma 3. muu ruutu.
     # 3. Asetetaan merkki vapaaseen ruutuun.
     # 4. Päivitetään pelitilanne.
     def pelaa(self, pelilauta):
@@ -51,11 +51,19 @@ class tietokonepelaaja(pelaaja):
         seuraava_ruutu = pelilauta.selvita_voittava_ruutu()
         if (seuraava_ruutu > 0):
             pelilauta.aseta_merkki(seuraava_ruutu)
-        elif (5 in pelilauta.anna_pelatut_ruudut()):
-            seuraava_ruutu = random.randint(1, 9)
-            while seuraava_ruutu in pelilauta.anna_pelatut_ruudut():
-                seuraava_ruutu = random.randint(1, 9)
-            pelilauta.aseta_merkki(seuraava_ruutu)
-        else:
+        elif (5 not in pelilauta.anna_pelatut_ruudut()):
             pelilauta.aseta_merkki(5)
+        elif (1 not in pelilauta.anna_pelatut_ruudut()
+            or 3 not in pelilauta.anna_pelatut_ruudut()
+            or 7 not in pelilauta.anna_pelatut_ruudut()
+            or 9 not in pelilauta.anna_pelatut_ruudut()):
+                seuraava_ruutu = random.choice([1,3,7,9])
+                while seuraava_ruutu in pelilauta.anna_pelatut_ruudut():
+                    seuraava_ruutu = random.choice([1,3,7,9])
+                pelilauta.aseta_merkki(seuraava_ruutu)
+        else:
+            seuraava_ruutu = random.choice([2,4,6,8])
+            while seuraava_ruutu in pelilauta.anna_pelatut_ruudut():
+                seuraava_ruutu = random.choice([2,4,6,8])
+            pelilauta.aseta_merkki(seuraava_ruutu)
         pelilauta.paivita_pelitilanne()

@@ -1,6 +1,7 @@
 import Pelilauta
 import Pelaaja
 import time
+import random
 
 class ristinolla:
     def __init__(self):
@@ -28,6 +29,13 @@ class ristinolla:
                 print("Syötteesi ei ole sopiva numero.\n")
             if self.pelilauta.anna_pelaajamaara() == 1: 
                 self.Pelaaja2 = Pelaaja.tietokonepelaaja()
+                print("Arvotaan aloittaja...\n")
+                self.pelilauta.aseta_kierros(random.choice([1,2]))
+                time.sleep(3)
+                if (self.pelilauta.anna_kierros() == 1):
+                    print("Sinä (X) aloitat!")
+                else:
+                    print("Tietokonepelaaja (O) aloittaa!")
             if self.pelilauta.anna_pelaajamaara() == 2: 
                 self.Pelaaja2 = Pelaaja.ihmispelaaja()
 
