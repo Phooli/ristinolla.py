@@ -9,15 +9,26 @@ class pelilauta:
     def anna_pelaajamaara(self): 
         return self.pelaajamaara
 
-    def aseta_pelaajamaara(self, pelaajaMaara): 
-        self.pelaajamaara = pelaajaMaara
+    def aseta_pelaajamaara(self, pelaajamaara): 
+        self.pelaajamaara = pelaajamaara
     
     def anna_pelitilanne(self): 
         return self.pelitilanne
 
     # Palauttaa tämänhetkisen pelitilanteen merkkijonona.
     def paivita_pelitilanne(self): 
-        self.pelitilanne = "".join(f"{self.lauta[0][0]},{self.lauta[0][1]},{self.lauta[0][2]},{self.lauta[1][0]},{self.lauta[1][1]},{self.lauta[1][2]},{self.lauta[2][0]},{self.lauta[2][1]},{self.lauta[2][2]},{str(self.pelaajamaara)},{str(self.kierros)}")
+        self.pelitilanne = "".join(
+            f"{self.lauta[0][0]},"
+            f"{self.lauta[0][1]},"
+            f"{self.lauta[0][2]},"
+            f"{self.lauta[1][0]},"
+            f"{self.lauta[1][1]},"
+            f"{self.lauta[1][2]},"
+            f"{self.lauta[2][0]},"
+            f"{self.lauta[2][1]},"
+            f"{self.lauta[2][2]},"
+            f"{str(self.pelaajamaara)},"
+            f"{str(self.kierros)}")
 
     # Palauttaa pelitilanteen lähtöasetelmiin, jossa ei asetettua pelaajamäärää ja kierros 1. 
     def nollaa_pelitilanne(self):

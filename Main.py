@@ -1,6 +1,6 @@
 import Ristinolla
 
-class Main:
+class main:
         ristinolla = Ristinolla.ristinolla()
         try:
             ristinolla.lataa()
