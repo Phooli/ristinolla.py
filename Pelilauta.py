@@ -120,16 +120,16 @@ class pelilauta:
         if self.onko_voitto() == True: 
             if self.pelaajamaara == 2: 
                 if self.kierros %2 == 0:
-                    print("Pelaaja 1 (X) voittaa!")
+                    print("Pelaaja 1 (X) voittaa!\n")
                 else:
-                    print("Pelaaja 2 (O) voittaa!")
+                    print("Pelaaja 2 (O) voittaa!\n")
             else:
                 if (self.kierros %2 == 0):
-                    print("Voitit pelin!")
+                    print("Voitit pelin!\n")
                 else:
-                    print("Hävisit pelin!")
+                    print("Hävisit pelin!\n")
         else:
-            print("Tasapeli!")
+            print("Tasapeli!\n")
 
     # Palauttaa booleanin siitä, onko peli loppu. Voiton puuttuessa ja ruudukossa ollessa tilaa peli ei ole loppu.
     def peli_loppu(self):
@@ -157,24 +157,102 @@ class pelilauta:
             return True
         return False
 
+    # Palauttaa sellaista ruutua vastaavan numeron, jolla jompikumpi pelaaja voittaisi. Jos sellaista ruutua ei ole, palautetaan 0.
+    # Etsitään siis joka riviltä/diagonaalilta tilannetta, että olisi kaksi samaa merkkiä ja yksi tyhjä ruutu.
+    def selvita_voittava_ruutu(self):
+        voittava_ruutu = 0
+        if self.lauta[0][0] == self.lauta[0][1] and self.lauta[0][2] == '3':
+            voittava_ruutu = 3
+            return voittava_ruutu
+        if self.lauta[1][0] == self.lauta[1][1] and self.lauta[1][2] == '6':
+            voittava_ruutu = 6
+            return voittava_ruutu
+        if self.lauta[2][0] == self.lauta[2][1] and self.lauta[2][2] == '9':
+            voittava_ruutu = 9
+            return voittava_ruutu
+        if self.lauta[0][1] == self.lauta[0][2] and self.lauta[0][0] == '1':
+            voittava_ruutu = 1
+            return voittava_ruutu
+        if self.lauta[1][1] == self.lauta[1][2] and self.lauta[1][0] == '4':
+            voittava_ruutu = 4
+            return voittava_ruutu
+        if self.lauta[2][1] == self.lauta[2][2] and self.lauta[2][0] == '7':
+            voittava_ruutu = 7
+            return voittava_ruutu
+        if self.lauta[0][0] == self.lauta[0][2] and self.lauta[0][1] == '2':
+            voittava_ruutu = 2
+            return voittava_ruutu
+        if self.lauta[1][0] == self.lauta[1][2] and self.lauta[1][1] == '5':
+            voittava_ruutu = 5
+            return voittava_ruutu
+        if self.lauta[2][0] == self.lauta[2][2] and self.lauta[2][1] == '8':
+            voittava_ruutu = 8
+            return voittava_ruutu
+        if self.lauta[1][2] == self.lauta[2][2] and self.lauta[0][2] == '3':
+            voittava_ruutu = 3
+            return voittava_ruutu
+        if self.lauta[0][2] == self.lauta[2][2] and self.lauta[1][2] == '6':
+            voittava_ruutu = 6
+            return voittava_ruutu
+        if self.lauta[0][2] == self.lauta[1][2] and self.lauta[2][2] == '9':
+            voittava_ruutu = 9
+            return voittava_ruutu
+        if self.lauta[1][0] == self.lauta[2][0] and self.lauta[0][0] == '1':
+            voittava_ruutu = 1
+            return voittava_ruutu
+        if self.lauta[0][0] == self.lauta[2][0] and self.lauta[1][0] == '4':
+            voittava_ruutu = 4
+            return voittava_ruutu
+        if self.lauta[0][0] == self.lauta[1][0] and self.lauta[2][0] == '7':
+            voittava_ruutu = 7
+            return voittava_ruutu
+        if self.lauta[1][1] == self.lauta[2][1] and self.lauta[0][1] == '2':
+            voittava_ruutu = 2
+            return voittava_ruutu
+        if self.lauta[0][1] == self.lauta[2][1] and self.lauta[1][1] == '5':
+            voittava_ruutu = 5
+            return voittava_ruutu
+        if self.lauta[0][1] == self.lauta[1][1] and self.lauta[2][1] == '8':
+            voittava_ruutu = 8
+            return voittava_ruutu
+        if self.lauta[0][0] == self.lauta[1][1] and self.lauta[2][2] == '9':
+            voittava_ruutu = 9
+            return voittava_ruutu
+        if self.lauta[1][1] == self.lauta[2][2] and self.lauta[0][0] == '1':
+            voittava_ruutu = 1
+            return voittava_ruutu
+        if self.lauta[0][0] == self.lauta[2][2] and self.lauta[1][1] == '5':
+            voittava_ruutu = 5
+            return voittava_ruutu
+        if self.lauta[0][2] == self.lauta[1][1] and self.lauta[2][0] == '7':
+            voittava_ruutu = 7
+            return voittava_ruutu
+        if self.lauta[0][2] == self.lauta[2][0] and self.lauta[1][1] == '5':
+            voittava_ruutu = 5
+            return voittava_ruutu
+        if self.lauta[2][0] == self.lauta[1][1] and self.lauta[0][2] == '3':
+            voittava_ruutu = 3
+            return voittava_ruutu
+        return voittava_ruutu
+
     # Palautetaan boolean siitä, onko laudalla tilaa. Tarkistetaan ruutuja, kunnes jossain ruudussa ei ole merkkiä. Jos kaikissa ruuduissa merkki, lauta on täynnä.
     def onko_taynna(self): 
-        if self.lauta[0][0] != 'O' and self.lauta[0][0] != 'X': 
+        if self.lauta[0][0] == '1':
             return False
-        if self.lauta[0][1] != 'O' and self.lauta[0][1] != 'X': 
+        if self.lauta[0][1] == '2':
             return False
-        if self.lauta[0][2] != 'O' and self.lauta[0][2] != 'X': 
+        if self.lauta[0][2] == '3':
             return False
-        if self.lauta[1][0] != 'O' and self.lauta[1][0] != 'X': 
+        if self.lauta[1][0] == '4':
             return False
-        if self.lauta[1][1] != 'O' and self.lauta[1][1] != 'X': 
+        if self.lauta[1][1] == '5':
             return False
-        if self.lauta[1][2] != 'O' and self.lauta[1][2] != 'X': 
+        if self.lauta[1][2] == '6':
             return False
-        if self.lauta[2][0] != 'O' and self.lauta[2][0] != 'X': 
+        if self.lauta[2][0] == '7':
             return False
-        if self.lauta[2][1] != 'O' and self.lauta[2][1] != 'X': 
+        if self.lauta[2][1] == '8':
             return False
-        if self.lauta[2][2] != 'O' and self.lauta[2][2] != 'X': 
+        if self.lauta[2][2] == '9':
             return False
         return True

@@ -39,19 +39,23 @@ class ihmispelaaja(pelaaja):
 
 class tietokonepelaaja(pelaaja):
     
-    # Tulostetaan pelilauta.
-    # Generoidaan satunnaisluku 1-9, kunnes luku vastaa vapaan ruudun numeroa. 
-    # Asetetaan merkki vapaaseen ruutuun.
-    # Päivitetään pelitilanne.
+    # 1. Tulostetaan pelilauta.
+    # 2. Jos löytyy yksi ruutu, jolla voitetaan tai voidaan estää vastustajan voitto, pelataan se.
+    # Muussa tapauksessa pelataan keskimmäinen ruutu, jos mahdollista, tai satunnaisesti generoitua vapaata ruutua.
+    # 3. Asetetaan merkki vapaaseen ruutuun.
+    # 4. Päivitetään pelitilanne.
     def pelaa(self, pelilauta):
         pelilauta.tulosta_lauta()
         print("Tietokonepelaaja asettaa merkin...")
-        try: 
-            time.sleep(3)
-        except Exception:
-            print("Jokin meni pieleen!")
-        seuraava_ruutu = random.randint(1, 9)
-        while seuraava_ruutu in pelilauta.anna_pelatut_ruudut():
+        time.sleep(3)
+        seuraava_ruutu = pelilauta.selvita_voittava_ruutu()
+        if (seuraava_ruutu > 0):
+            pelilauta.aseta_merkki(seuraava_ruutu)
+        elif (5 in pelilauta.anna_pelatut_ruudut()):
             seuraava_ruutu = random.randint(1, 9)
-        pelilauta.aseta_merkki(seuraava_ruutu)
+            while seuraava_ruutu in pelilauta.anna_pelatut_ruudut():
+                seuraava_ruutu = random.randint(1, 9)
+            pelilauta.aseta_merkki(seuraava_ruutu)
+        else:
+            pelilauta.aseta_merkki(5)
         pelilauta.paivita_pelitilanne()
