@@ -86,3 +86,7 @@ class ristinolla:
         except FileNotFoundError:
             print("Tallennettua peliä ei löytynyt!\n")
             self.pelilauta.nollaa_pelitilanne()
+
+Peli = ristinolla()
+Peli.lataa()
+Peli.pelaa()

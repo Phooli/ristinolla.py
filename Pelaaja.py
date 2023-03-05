@@ -1,13 +1,7 @@
 import random
 import time
 
-class pelaaja: 
-       def __init__(self):
-            pass
-       def pelaa(self):
-            pass 
-        
-class ihmispelaaja(pelaaja):
+class ihmispelaaja:
 
     # Tulostetaan pelilauta.
     # Tarkistetaan ihmispelaajien määrä, kysytään meneillään olevan vuoron perusteella oikealta pelaajalta ruudun numeroa. 
@@ -37,7 +31,7 @@ class ihmispelaaja(pelaaja):
             except ValueError: 
                 print("Syötteesi ei ole sopiva numero.\n")
 
-class tietokonepelaaja(pelaaja):
+class tietokonepelaaja:
     
     # 1. Tulostetaan pelilauta.
     # 2. Jos löytyy yksi ruutu, jolla voitetaan tai voidaan estää vastustajan voitto, pelataan se.
