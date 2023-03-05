@@ -6,15 +6,6 @@ class pelilauta:
         self.pelitilanne = str()
         self.pelatut_ruudut = list()
 
-    def anna_pelaajamaara(self): 
-        return self.pelaajamaara
-
-    def aseta_pelaajamaara(self, pelaajamaara): 
-        self.pelaajamaara = pelaajamaara
-    
-    def anna_pelitilanne(self): 
-        return self.pelitilanne
-
     # Palauttaa tämänhetkisen pelitilanteen merkkijonona.
     def paivita_pelitilanne(self): 
         self.pelitilanne = "".join(
@@ -33,8 +24,8 @@ class pelilauta:
     # Palauttaa pelitilanteen lähtöasetelmiin, jossa ei asetettua pelaajamäärää ja kierros 1. 
     def nollaa_pelitilanne(self):
         self.pelitilanne = "".join("1,2,3,4,5,6,7,8,9,0,1")
-        self.aseta_pelaajamaara(0)
-        self.aseta_kierros(1)
+        self.pelaajamaara = 0
+        self.kierros = 1
         self.lauta[0][0] = '1' 
         self.lauta[0][1] = '2'
         self.lauta[0][2] = '3'
@@ -46,12 +37,6 @@ class pelilauta:
         self.lauta[2][2] = '9'
         self.pelatut_ruudut.clear()
     
-    def anna_kierros(self):
-        return self.kierros
-    
-    def aseta_kierros(self, kierros):
-        self.kierros = kierros
-
     # Tarkistaa jokaisen ruudun asetetun merkin varalta, ja lisää tällöin ruudun pelattujen ruutujen taulukkoon.
     def selvita_pelatut_ruudut(self):
         if self.lauta[0][0] != '1': 
@@ -73,9 +58,6 @@ class pelilauta:
         if self.lauta[2][2] != '9':
             self.pelatut_ruudut.append(9)
     
-    def anna_pelatut_ruudut(self):
-        return self.pelatut_ruudut
-
     # Tulostaa yksinkertaisen ristinolla-laudan komentoriville senhetkisen pelitilanteen mukaisesti. 
     def tulosta_lauta(self):
         print("")
@@ -137,7 +119,7 @@ class pelilauta:
             return False
         return True
 
-    # Palautetaan boolean voitosta brute force -selvityksen perusteella siitä, että onko pelilaudalla sääntöjen mukaisesti kolmen merkin yhdistelmä.
+    # Palautetaan boolean voitosta selvittämällä, että onko pelilaudalla kolmen saman merkin jono.
     def onko_voitto(self):
         if self.lauta[0][0] == self.lauta[0][1] and self.lauta[0][0] == self.lauta[0][2]: 
             return True
@@ -235,7 +217,7 @@ class pelilauta:
             return voittava_ruutu
         return voittava_ruutu
 
-    # Palautetaan boolean siitä, onko laudalla tilaa. Tarkistetaan ruutuja, kunnes jossain ruudussa ei ole merkkiä. Jos kaikissa ruuduissa merkki, lauta on täynnä.
+    # Palautetaan boolean siitä, että onko laudalla tilaa. Tarkistetaan ruutuja, kunnes jossain ruudussa ei ole merkkiä. Jos kaikissa ruuduissa merkki, lauta on täynnä.
     def onko_taynna(self): 
         if self.lauta[0][0] == '1':
             return False

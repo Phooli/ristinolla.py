@@ -18,8 +18,8 @@ class ihmispelaaja(pelaaja):
         pelilauta.tulosta_lauta()
         while syote_sallittu == False:
             try:
-                if pelilauta.anna_pelaajamaara() == 2:
-                    if pelilauta.anna_kierros() %2 != 0: 
+                if pelilauta.pelaajamaara == 2:
+                    if pelilauta.kierros %2 != 0: 
                         seuraava_ruutu = int(input("Pelaaja 1 (X): Aseta merkkisi vapaaseen ruutuun syöttämällä ruudun numero: "))   
                     else:
                         seuraava_ruutu= int(input("Pelaaja 2 (O): Aseta merkkisi vapaaseen ruutuun syöttämällä ruudun numero: "))
@@ -28,7 +28,7 @@ class ihmispelaaja(pelaaja):
                 if seuraava_ruutu > 9 or seuraava_ruutu < 1:
                     print("Numero ei vastaa ruutua.\n")
                     continue
-                if seuraava_ruutu in pelilauta.anna_pelatut_ruudut():
+                if seuraava_ruutu in pelilauta.pelatut_ruudut:
                     print("Ruutu on jo täytetty.\n")
                     continue
                 syote_sallittu = True
@@ -51,19 +51,19 @@ class tietokonepelaaja(pelaaja):
         seuraava_ruutu = pelilauta.selvita_voittava_ruutu()
         if (seuraava_ruutu > 0):
             pelilauta.aseta_merkki(seuraava_ruutu)
-        elif (5 not in pelilauta.anna_pelatut_ruudut()):
+        elif (5 not in pelilauta.pelatut_ruudut):
             pelilauta.aseta_merkki(5)
-        elif (1 not in pelilauta.anna_pelatut_ruudut()
-            or 3 not in pelilauta.anna_pelatut_ruudut()
-            or 7 not in pelilauta.anna_pelatut_ruudut()
-            or 9 not in pelilauta.anna_pelatut_ruudut()):
+        elif (1 not in pelilauta.pelatut_ruudut
+            or 3 not in pelilauta.pelatut_ruudut
+            or 7 not in pelilauta.pelatut_ruudut
+            or 9 not in pelilauta.pelatut_ruudut):
                 seuraava_ruutu = random.choice([1,3,7,9])
-                while seuraava_ruutu in pelilauta.anna_pelatut_ruudut():
+                while seuraava_ruutu in pelilauta.pelatut_ruudut:
                     seuraava_ruutu = random.choice([1,3,7,9])
                 pelilauta.aseta_merkki(seuraava_ruutu)
         else:
             seuraava_ruutu = random.choice([2,4,6,8])
-            while seuraava_ruutu in pelilauta.anna_pelatut_ruudut():
+            while seuraava_ruutu in pelilauta.pelatut_ruudut:
                 seuraava_ruutu = random.choice([2,4,6,8])
             pelilauta.aseta_merkki(seuraava_ruutu)
         pelilauta.paivita_pelitilanne()
